@@ -1,32 +1,21 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
-
-// import { removeBook } from '../../../redux/books/books';
-
-const books = [
-  { id: 1, name: 'book1' },
-  { id: 2, name: 'book2' },
-];
+import { useSelector, useDispatch } from 'react-redux';
+import { removeBook } from '../../../redux/books/books';
 
 const Book = () => {
+  const books = useSelector((state) => state.booksReducer);
+
   const dispatch = useDispatch();
-  const removeBookFromStore = () => {
-    // dispatch(removeBook('newBook'));
+
+  const removeBookHandler = (book) => {
+    dispatch(removeBook(book));
   };
 
-  return books.map((book) => (
-    <li key={book.id}>
-      {book.name}
-      <button type="button" onClick={removeBookFromStore}>remove</button>
+  return books.map((bookObj) => (
+    <li key={bookObj.id}>
+      {`${bookObj.title} -- ${bookObj.author} `}
+      <button type="button" onClick={() => removeBookHandler(bookObj)}>remove</button>
     </li>
   ));
 };
-
-books.propTypes = {
-  id: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
-};
-
 export default Book;

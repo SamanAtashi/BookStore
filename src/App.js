@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 import store from './redux/cofigureStore';
 import Books from './components/Books/Books';
 import Categories from './components/Categories/Categories';
-import AddBook from './components/Books/Book/AddBook';
 
 const App = () => (
   <Provider store={store}>
@@ -24,7 +23,7 @@ const App = () => (
           </Route>
         </Switch>
       </Router>
-      <AddBook />
+      <button type="button" onClick={() => console.log(store.getState().booksReducer)}>seeeeee</button>
     </div>
   </Provider>
 );

@@ -6,7 +6,7 @@ import { addBook } from '../../../redux/books/books';
 const AddBook = () => {
   const dispatch = useDispatch();
 
-  const submitBookToStore = () => {
+  const AddBookHandler = () => {
     const newBook = {
       id: uuidv4(),
       title: document.getElementById('title').value,
@@ -14,13 +14,16 @@ const AddBook = () => {
     };
     // dispatch an action and pass it the newBook object (your action's payload)
     dispatch(addBook(newBook));
+
+    document.getElementById('title').value = '';
+    document.getElementById('author').value = '';
   };
 
   return (
     <form>
       <input id="title" type="text" name="Title" placeholder="Title" />
       <input id="author" type="text" name="Author" placeholder="Author" />
-      <input type="button" value="Add" onClick={submitBookToStore} />
+      <input type="button" value="Add" onClick={AddBookHandler} />
     </form>
   );
 };
