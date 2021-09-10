@@ -1,37 +1,28 @@
 import React from 'react';
-import uuid from 'react-uuid'
-
-uuid()
-
-
-// import useDispatch hook
+import { v4 as uuidv4 } from 'uuid';
 import { useDispatch } from 'react-redux';
-// import your Action Creators
-import {addBook, removeBook} from '../../../redux/books/books';
+import { addBook } from '../../../redux/books/books';
 
 const AddBook = () => {
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-const submitBookToStore = () => {
+  const submitBookToStore = () => {
     const newBook = {
-        id:
-        title,
-        author
-    }
-
+      id: uuidv4(),
+      title: document.getElementById('title').value,
+      author: document.getElementById('author').value,
+    };
     // dispatch an action and pass it the newBook object (your action's payload)
     dispatch(addBook(newBook));
-}
+  };
 
-return (
-  <form>
-    <input type="text" name="Title" placeholder="Title" />
-    <input type="text" name="Author" placeholder="Author" />
-    <input type="button" value="Add" onClick={submitBookToStore} />
-  </form>)
+  return (
+    <form>
+      <input id="title" type="text" name="Title" placeholder="Title" />
+      <input id="author" type="text" name="Author" placeholder="Author" />
+      <input type="button" value="Add" onClick={submitBookToStore} />
+    </form>
+  );
 };
 
 export default AddBook;
-
-
-...
