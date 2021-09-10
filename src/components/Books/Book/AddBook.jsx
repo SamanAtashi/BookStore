@@ -1,18 +1,22 @@
+/* eslint-disable camelcase */
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useDispatch } from 'react-redux';
 import { addBook } from '../../../redux/books/books';
+import { StoreApiSend } from '../../../API/api_connect';
 
 const AddBook = () => {
   const dispatch = useDispatch();
 
-  const AddBookHandler = () => {
+  const AddBookHandler = async () => {
     const newBook = {
       id: uuidv4(),
       title: document.getElementById('title').value,
       author: document.getElementById('author').value,
     };
-    // dispatch an action and pass it the newBook object (your action's payload)
+
+    await StoreApiSend(newBook.title, newBook.author, newBook.id);
+
     dispatch(addBook(newBook));
 
     document.getElementById('title').value = '';
