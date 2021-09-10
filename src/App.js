@@ -23,7 +23,6 @@ const App = () => (
           </Route>
         </Switch>
       </Router>
-      <button type="button" onClick={() => console.log(store.getState().booksReducer)}>seeeeee</button>
     </div>
   </Provider>
 );

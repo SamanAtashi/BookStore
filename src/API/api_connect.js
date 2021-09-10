@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 const BASE_URL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/revy0Qm0vprS3SsZDYIR/books';
 
 export const StoreApiSend = async (title, author, id) => {
@@ -22,10 +21,21 @@ export const StoreApiSend = async (title, author, id) => {
 
 export const StoreApiReceive = async () => {
   const response = await fetch(BASE_URL);
-  const response2 = response.text();
+  const response2 = await response.json();
   return response2;
 };
 
-// export const store_api_remove = (book_id) => {
-
-// };
+export const StoreApiRemove = async (id) => {
+  await fetch(`${BASE_URL}/${id}`, {
+    method: 'DELETE',
+    body: JSON.stringify(
+      {
+        item_id: id,
+      },
+    ),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+  });
+  console.log('Deleted to api');
+};

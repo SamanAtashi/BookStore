@@ -1,21 +1,40 @@
-import React from 'react';
+/* eslint-disable max-len */
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeBook } from '../../../redux/books/books';
-// import { StoreApiReceive } from '../../../API/api_connect';
+import { removeBook, addBook } from '../../../redux/books/books';
+import { StoreApiReceive, StoreApiRemove } from '../../../API/api_connect';
 
 const Book = () => {
   const dispatch = useDispatch();
 
   const books = useSelector((state) => state.booksReducer);
 
-  const removeBookHandler = (book) => {
+  const removeBookHandler = (book, id) => {
+    StoreApiRemove(id);
     dispatch(removeBook(book));
   };
 
+  const retrieveFromApi = async () => {
+    const myObj = await StoreApiReceive();
+
+    // transform obj
+    const keys = Object.keys(myObj);
+    const vals = Object.values(myObj);
+    const book = keys.map((book, idx) => ({ id: keys[idx], author: vals[idx][0].category, title: vals[idx][0].title }));
+
+    book.forEach((book) => {
+      dispatch(addBook(book));
+    });
+  };
+
+  useEffect(() => {
+    retrieveFromApi();
+  }, []);
+
   return books.map((bookObj) => (
     <li key={bookObj.id}>
-      {`${bookObj.title} -- ${bookObj.category} `}
-      <button type="button" onClick={() => removeBookHandler(bookObj)}>remove</button>
+      {`${bookObj.title} -- ${bookObj.author} `}
+      <button type="button" onClick={() => removeBookHandler(bookObj, bookObj.id)}>remove</button>
     </li>
   ));
 };
