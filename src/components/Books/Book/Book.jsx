@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeBook, addBook } from '../../../redux/books/books';
@@ -20,7 +19,13 @@ const Book = () => {
     // transform obj
     const keys = Object.keys(myObj);
     const vals = Object.values(myObj);
-    const book = keys.map((book, idx) => ({ id: keys[idx], author: vals[idx][0].category, title: vals[idx][0].title }));
+    const book = keys.map((_, idx) => (
+      {
+        id: keys[idx],
+        author: vals[idx][0].category,
+        title: vals[idx][0].title,
+      }
+    ));
 
     book.forEach((book) => {
       dispatch(addBook(book));

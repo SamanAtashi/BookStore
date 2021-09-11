@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useDispatch } from 'react-redux';
@@ -15,9 +14,12 @@ const AddBook = () => {
       author: document.getElementById('author').value,
     };
 
-    await StoreApiSend(newBook.title, newBook.author, newBook.id);
-
-    dispatch(addBook(newBook));
+    if (document.getElementById('title').value !== '' && document.getElementById('author').value !== '') {
+      await StoreApiSend(newBook.title, newBook.author, newBook.id);
+      dispatch(addBook(newBook));
+    } else {
+      alert('Please fill both inputs!!!');
+    }
 
     document.getElementById('title').value = '';
     document.getElementById('author').value = '';
