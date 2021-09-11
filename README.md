@@ -2,7 +2,7 @@
 
 My BookStore .
 
-![screenshot](./src/Assets/sc.png)
+![screenshot](./src/Assets/sc2.png)
 
 # live Demo
  [Click Me]()
