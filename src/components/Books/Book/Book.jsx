@@ -4,6 +4,7 @@ import { removeBook, addBook } from '../../../redux/books/books';
 import { StoreApiReceive, StoreApiRemove } from '../../../API/api_connect';
 
 import classes from './Book.module.css';
+import bar from '../../../Assets/circular-progress.png';
 
 const Book = () => {
   const dispatch = useDispatch();
@@ -40,7 +41,12 @@ const Book = () => {
 
   return books.map((bookObj) => (
     <li key={bookObj.id} className={classes.item}>
-      <p>{`${bookObj.title} -- ${bookObj.author} `}</p>
+
+      <div className={classes.oval}>
+        <p>{`${bookObj.title} -- ${bookObj.author} `}</p>
+        <img src={bar} alt="bar" />
+      </div>
+      <p className="perc">60%</p>
       <button className={classes.del} type="button" onClick={() => removeBookHandler(bookObj, bookObj.id)}>remove</button>
     </li>
   ));

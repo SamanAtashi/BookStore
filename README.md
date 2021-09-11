@@ -4,8 +4,6 @@ My BookStore .
 
 ![screenshot](./src/Assets/sc2.png)
 
-# live Demo
- [Click Me]()
 
 ## Installation
 
