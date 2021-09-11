@@ -1,3 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-  background-color: antiquewhite;
+  padding: 9.313rem 3.75rem 7.688rem 6.25rem;
+  background-color: #f5f6fa;
+}
+
+#root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

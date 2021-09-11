@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { removeBook, addBook } from '../../../redux/books/books';
 import { StoreApiReceive, StoreApiRemove } from '../../../API/api_connect';
 
+import classes from './Book.module.css';
+
 const Book = () => {
   const dispatch = useDispatch();
 
@@ -37,9 +39,9 @@ const Book = () => {
   }, []);
 
   return books.map((bookObj) => (
-    <li key={bookObj.id}>
-      {`${bookObj.title} -- ${bookObj.author} `}
-      <button type="button" onClick={() => removeBookHandler(bookObj, bookObj.id)}>remove</button>
+    <li key={bookObj.id} className={classes.item}>
+      <p>{`${bookObj.title} -- ${bookObj.author} `}</p>
+      <button className={classes.del} type="button" onClick={() => removeBookHandler(bookObj, bookObj.id)}>remove</button>
     </li>
   ));
 };
