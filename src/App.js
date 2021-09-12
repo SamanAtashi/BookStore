@@ -7,13 +7,17 @@ import store from './redux/cofigureStore';
 import Books from './components/Books/Books';
 import Categories from './components/Categories/Categories';
 
+import classes from './App.module.css';
+
 const App = () => (
   <Provider store={store}>
-    <div>
-      <h1>Welcome to BookStore</h1>
+    <div className={classes.container}>
       <Router>
-        <Link to="/">Books</Link>
-        <Link to="/categories">Categories</Link>
+        <div className={classes.panel_bg}>
+          <h1>My BookStore</h1>
+          <Link to="/">Books</Link>
+          <Link to="/categories">Categories</Link>
+        </div>
         <Switch>
           <Route path="/categories">
             <Categories />

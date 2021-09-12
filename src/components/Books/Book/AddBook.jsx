@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import { addBook } from '../../../redux/books/books';
 import { StoreApiSend } from '../../../API/api_connect';
 
+import classes from './AddBook.module.css';
+
 const AddBook = () => {
   const dispatch = useDispatch();
 
@@ -26,11 +28,15 @@ const AddBook = () => {
   };
 
   return (
-    <form>
-      <input id="title" type="text" name="Title" placeholder="Title" />
-      <input id="author" type="text" name="Author" placeholder="Author" />
-      <input type="button" value="Add" onClick={AddBookHandler} />
-    </form>
+    <div className={classes.formContain}>
+
+      <form>
+        <h2>ADD NEW BOOK</h2>
+        <input className={classes.title} id="title" type="text" name="Title" placeholder="Title" />
+        <input className={classes.author} id="author" type="text" name="Author" placeholder="Author" />
+        <input className={classes.button} type="button" value="Add" onClick={AddBookHandler} />
+      </form>
+    </div>
   );
 };
 
